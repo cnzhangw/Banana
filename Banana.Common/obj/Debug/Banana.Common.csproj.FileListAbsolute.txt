@@ -1,0 +1,5 @@
+D:\project\BananaFramwork\Banana.Common\bin\Debug\Banana.Common.dll
+D:\project\BananaFramwork\Banana.Common\bin\Debug\Banana.Common.pdb
+D:\project\BananaFramwork\Banana.Common\obj\Debug\Banana.Common.csprojResolveAssemblyReference.cache
+D:\project\BananaFramwork\Banana.Common\obj\Debug\Banana.Common.dll
+D:\project\BananaFramwork\Banana.Common\obj\Debug\Banana.Common.pdb

@@ -1,0 +1,10 @@
+d:\documents\visual studio 2013\Projects\MvcApplication1\Banana.Core\bin\Debug\Banana.Core.dll
+d:\documents\visual studio 2013\Projects\MvcApplication1\Banana.Core\obj\Debug\Banana.Core.dll
+d:\documents\visual studio 2013\Projects\MvcApplication1\Banana.Core\obj\Debug\Banana.Core.pdb
+d:\documents\visual studio 2013\Projects\MvcApplication1\Banana.Core\bin\Debug\Banana.Core.pdb
+d:\documents\visual studio 2013\Projects\MvcApplication1\Banana.Core\obj\Debug\Banana.Core.csprojResolveAssemblyReference.cache
+D:\project\BananaFramwork\Banana.Core\obj\Debug\Banana.Core.dll
+D:\project\BananaFramwork\Banana.Core\obj\Debug\Banana.Core.pdb
+D:\project\BananaFramwork\Banana.Core\bin\Debug\Banana.Core.dll
+D:\project\BananaFramwork\Banana.Core\bin\Debug\Banana.Core.pdb
+D:\project\BananaFramwork\Banana.Core\obj\Debug\Banana.Core.csprojResolveAssemblyReference.cache
