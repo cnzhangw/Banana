@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -147,10 +149,6 @@
     <Content Include="Views\Main\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Banana.Common\Banana.Common.csproj">
-      <Project>{a2dcf4be-270b-4e4f-86e4-05b001af5ef4}</Project>
-      <Name>Banana.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Banana.Core\Banana.Core.csproj">
       <Project>{81fcb1b2-535c-42c0-80cf-78ef98e1bfa5}</Project>
       <Name>Banana.Core</Name>

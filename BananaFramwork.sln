@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banana.Core", "Banana.Core\Banana.Core.csproj", "{81FCB1B2-535C-42C0-80CF-78EF98E1BFA5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{A1AC2B26-C9BD-40B2-8B7C-D1B78BA52C6A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banana.Common", "Banana.Common\Banana.Common.csproj", "{A2DCF4BE-270B-4E4F-86E4-05B001AF5EF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +15,11 @@ Global
 		{81FCB1B2-535C-42C0-80CF-78EF98E1BFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81FCB1B2-535C-42C0-80CF-78EF98E1BFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81FCB1B2-535C-42C0-80CF-78EF98E1BFA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1AC2B26-C9BD-40B2-8B7C-D1B78BA52C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1AC2B26-C9BD-40B2-8B7C-D1B78BA52C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1AC2B26-C9BD-40B2-8B7C-D1B78BA52C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1AC2B26-C9BD-40B2-8B7C-D1B78BA52C6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2DCF4BE-270B-4E4F-86E4-05B001AF5EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2DCF4BE-270B-4E4F-86E4-05B001AF5EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2DCF4BE-270B-4E4F-86E4-05B001AF5EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2DCF4BE-270B-4E4F-86E4-05B001AF5EF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD53A937-E305-4E7B-B372-DB8F6A0BB8BF}
 	EndGlobalSection
 EndGlobal
