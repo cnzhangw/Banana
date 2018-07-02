@@ -30,7 +30,7 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "sNnCLMPPU+p/5XKWXAV0fQo5GNzvbZ9enOY6gU+RVrNqiH2NvuI9xk4WuNgnj7m9LtoL4XszQlgye0F6WpcAkA==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [

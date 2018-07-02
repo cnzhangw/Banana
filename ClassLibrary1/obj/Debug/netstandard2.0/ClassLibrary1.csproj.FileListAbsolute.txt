@@ -1,0 +1,9 @@
+D:\project\github\Banana\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.deps.json
+D:\project\github\Banana\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.dll
+D:\project\github\Banana\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.pdb
+D:\project\github\Banana\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csprojAssemblyReference.cache
+D:\project\github\Banana\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csproj.CoreCompileInputs.cache
+D:\project\github\Banana\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfoInputs.cache
+D:\project\github\Banana\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfo.cs
+D:\project\github\Banana\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.dll
+D:\project\github\Banana\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.pdb
