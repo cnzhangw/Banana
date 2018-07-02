@@ -2,10 +2,10 @@ D:\project\github\Banana\Banana\bin\Debug\net45\Banana.dll
 D:\project\github\Banana\Banana\bin\Debug\net45\Banana.pdb
 D:\project\github\Banana\Banana\bin\Debug\net45\log4net.dll
 D:\project\github\Banana\Banana\bin\Debug\net45\Newtonsoft.Json.dll
-D:\project\github\Banana\Banana\obj\Debug\net45\Banana.csprojAssemblyReference.cache
 D:\project\github\Banana\Banana\obj\Debug\net45\Banana.csproj.CoreCompileInputs.cache
 D:\project\github\Banana\Banana\obj\Debug\net45\Banana.AssemblyInfoInputs.cache
 D:\project\github\Banana\Banana\obj\Debug\net45\Banana.AssemblyInfo.cs
 D:\project\github\Banana\Banana\obj\Debug\net45\Banana.csproj.CopyComplete
 D:\project\github\Banana\Banana\obj\Debug\net45\Banana.dll
 D:\project\github\Banana\Banana\obj\Debug\net45\Banana.pdb
+D:\project\github\Banana\Banana\obj\Debug\net45\Banana.csprojAssemblyReference.cache
