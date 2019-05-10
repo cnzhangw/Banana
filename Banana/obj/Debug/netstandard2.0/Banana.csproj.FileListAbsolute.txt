@@ -1,8 +1,0 @@
-D:\project\github\Banana\Banana\bin\Debug\netstandard2.0\Banana.deps.json
-D:\project\github\Banana\Banana\bin\Debug\netstandard2.0\Banana.dll
-D:\project\github\Banana\Banana\bin\Debug\netstandard2.0\Banana.pdb
-D:\project\github\Banana\Banana\obj\Debug\netstandard2.0\Banana.csproj.CoreCompileInputs.cache
-D:\project\github\Banana\Banana\obj\Debug\netstandard2.0\Banana.AssemblyInfoInputs.cache
-D:\project\github\Banana\Banana\obj\Debug\netstandard2.0\Banana.AssemblyInfo.cs
-D:\project\github\Banana\Banana\obj\Debug\netstandard2.0\Banana.dll
-D:\project\github\Banana\Banana\obj\Debug\netstandard2.0\Banana.pdb
