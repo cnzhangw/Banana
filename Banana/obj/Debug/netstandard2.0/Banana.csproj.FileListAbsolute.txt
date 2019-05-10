@@ -1,0 +1,17 @@
+D:\project\mine\Banana\Banana\obj\Debug\netstandard2.0\Banana.pdb
+D:\project\mine\Banana\Banana\bin\Debug\netstandard2.0\Banana.deps.json
+D:\project\mine\Banana\Banana\bin\Debug\netstandard2.0\Banana.dll
+D:\project\mine\Banana\Banana\bin\Debug\netstandard2.0\Banana.pdb
+D:\project\mine\Banana\Banana\obj\Debug\netstandard2.0\Banana.csproj.CoreCompileInputs.cache
+D:\project\mine\Banana\Banana\obj\Debug\netstandard2.0\Banana.AssemblyInfoInputs.cache
+D:\project\mine\Banana\Banana\obj\Debug\netstandard2.0\Banana.AssemblyInfo.cs
+D:\project\mine\Banana\Banana\obj\Debug\netstandard2.0\Banana.dll
+D:\project\mine\dev.azure.com\banana\Banana\bin\Debug\netstandard2.0\Banana.deps.json
+D:\project\mine\dev.azure.com\banana\Banana\bin\Debug\netstandard2.0\Banana.dll
+D:\project\mine\dev.azure.com\banana\Banana\bin\Debug\netstandard2.0\Banana.pdb
+D:\project\mine\dev.azure.com\banana\Banana\obj\Debug\netstandard2.0\Banana.csproj.CoreCompileInputs.cache
+D:\project\mine\dev.azure.com\banana\Banana\obj\Debug\netstandard2.0\Banana.AssemblyInfoInputs.cache
+D:\project\mine\dev.azure.com\banana\Banana\obj\Debug\netstandard2.0\Banana.AssemblyInfo.cs
+D:\project\mine\dev.azure.com\banana\Banana\obj\Debug\netstandard2.0\Banana.dll
+D:\project\mine\dev.azure.com\banana\Banana\obj\Debug\netstandard2.0\Banana.pdb
+D:\project\mine\dev.azure.com\banana\Banana\obj\Debug\netstandard2.0\Banana.csprojAssemblyReference.cache

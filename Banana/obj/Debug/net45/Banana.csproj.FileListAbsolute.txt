@@ -1,0 +1,10 @@
+D:\project\mine\Banana\Banana\bin\Debug\net45\Banana.dll
+D:\project\mine\Banana\Banana\bin\Debug\net45\Banana.pdb
+D:\project\mine\Banana\Banana\bin\Debug\net45\log4net.dll
+D:\project\mine\Banana\Banana\bin\Debug\net45\Newtonsoft.Json.dll
+D:\project\mine\Banana\Banana\obj\Debug\net45\Banana.csproj.CoreCompileInputs.cache
+D:\project\mine\Banana\Banana\obj\Debug\net45\Banana.AssemblyInfoInputs.cache
+D:\project\mine\Banana\Banana\obj\Debug\net45\Banana.AssemblyInfo.cs
+D:\project\mine\Banana\Banana\obj\Debug\net45\Banana.csproj.CopyComplete
+D:\project\mine\Banana\Banana\obj\Debug\net45\Banana.dll
+D:\project\mine\Banana\Banana\obj\Debug\net45\Banana.pdb
