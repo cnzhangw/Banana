@@ -1,0 +1,74 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Banana.Tests/1.0.0": {
+        "dependencies": {
+          "Banana.Extension.MySql": "1.0.0",
+          "Banana.Extension.SqlServer": "1.0.0",
+          "Banana.Repository": "1.0.0"
+        },
+        "runtime": {
+          "Banana.Tests.dll": {}
+        }
+      },
+      "Banana.Core/1.0.0": {
+        "runtime": {
+          "Banana.Core.dll": {}
+        }
+      },
+      "Banana.Extension.MySql/1.0.0": {
+        "dependencies": {
+          "Banana.Core": "1.0.0"
+        },
+        "runtime": {
+          "Banana.Extension.MySql.dll": {}
+        }
+      },
+      "Banana.Extension.SqlServer/1.0.0": {
+        "runtime": {
+          "Banana.Extension.SqlServer.dll": {}
+        }
+      },
+      "Banana.Repository/1.0.0": {
+        "dependencies": {
+          "Banana.Core": "1.0.0"
+        },
+        "runtime": {
+          "Banana.Repository.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Banana.Tests/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Banana.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Banana.Extension.MySql/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Banana.Extension.SqlServer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Banana.Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

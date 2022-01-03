@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = Banana.Extension.SqlServer
+build_property.ProjectDir = D:\project\Banana\Banana.Extension.SqlServer\

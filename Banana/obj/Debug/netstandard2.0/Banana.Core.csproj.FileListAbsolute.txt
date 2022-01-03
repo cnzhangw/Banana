@@ -1,0 +1,10 @@
+D:\project\Banana\Banana.Core\bin\Debug\netstandard2.0\Banana.Core.deps.json
+D:\project\Banana\Banana.Core\bin\Debug\netstandard2.0\Banana.Core.dll
+D:\project\Banana\Banana.Core\bin\Debug\netstandard2.0\Banana.Core.pdb
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.csproj.AssemblyReference.cache
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.AssemblyInfoInputs.cache
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.AssemblyInfo.cs
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.csproj.CoreCompileInputs.cache
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.dll
+D:\project\Banana\Banana.Core\obj\Debug\netstandard2.0\Banana.Core.pdb

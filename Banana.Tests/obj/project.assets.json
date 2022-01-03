@@ -1,0 +1,128 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "Banana.Extension.MySql/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Banana.Extension.MySql.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Banana.Extension.MySql.dll": {}
+        }
+      },
+      "Banana.Extension.SqlServer/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Banana.Extension.SqlServer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Banana.Extension.SqlServer.dll": {}
+        }
+      },
+      "Banana.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Banana.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Banana.Repository.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Banana.Extension.MySql/1.0.0": {
+      "type": "project",
+      "path": "../Banana.Extension.MySql/Banana.Extension.MySql.csproj",
+      "msbuildProject": "../Banana.Extension.MySql/Banana.Extension.MySql.csproj"
+    },
+    "Banana.Extension.SqlServer/1.0.0": {
+      "type": "project",
+      "path": "../Banana.Extension.SqlServer/Banana.Extension.SqlServer.csproj",
+      "msbuildProject": "../Banana.Extension.SqlServer/Banana.Extension.SqlServer.csproj"
+    },
+    "Banana.Repository/1.0.0": {
+      "type": "project",
+      "path": "../Banana.Repository/Banana.Repository.csproj",
+      "msbuildProject": "../Banana.Repository/Banana.Repository.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "Banana.Extension.MySql >= 1.0.0",
+      "Banana.Extension.SqlServer >= 1.0.0",
+      "Banana.Repository >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\project\\Banana\\Banana.Tests\\Banana.Tests.csproj",
+      "projectName": "Banana.Tests",
+      "projectPath": "D:\\project\\Banana\\Banana.Tests\\Banana.Tests.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "D:\\project\\Banana\\Banana.Tests\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {
+            "D:\\project\\Banana\\Banana.Extension.MySql\\Banana.Extension.MySql.csproj": {
+              "projectPath": "D:\\project\\Banana\\Banana.Extension.MySql\\Banana.Extension.MySql.csproj"
+            },
+            "D:\\project\\Banana\\Banana.Extension.SqlServer\\Banana.Extension.SqlServer.csproj": {
+              "projectPath": "D:\\project\\Banana\\Banana.Extension.SqlServer\\Banana.Extension.SqlServer.csproj"
+            },
+            "D:\\project\\Banana\\Banana.Repository\\Banana.Repository.csproj": {
+              "projectPath": "D:\\project\\Banana\\Banana.Repository\\Banana.Repository.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

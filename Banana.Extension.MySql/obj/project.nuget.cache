@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nPoRxnhLItVMVXft2AeXd+5MG/CdPkIHONo8ICcy0RXG/iTCYsogSpV9Zev7ozdPO7BMZLGDBOpmQI75M0celw==",
+  "success": true,
+  "projectFilePath": "D:\\project\\Banana\\Banana.Extension.MySql\\Banana.Extension.MySql.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
