@@ -1,8 +1,6 @@
 D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.Extension.MySql.deps.json
 D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.Extension.MySql.dll
 D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.Extension.MySql.pdb
-D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.Core.dll
-D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.Core.pdb
 D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extension.MySql.csproj.AssemblyReference.cache
 D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extension.MySql.GeneratedMSBuildEditorConfig.editorconfig
 D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extension.MySql.AssemblyInfoInputs.cache
@@ -11,3 +9,5 @@ D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extensi
 D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extension.MySql.csproj.CopyComplete
 D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extension.MySql.dll
 D:\project\Banana\Banana.Extension.MySql\obj\Debug\netstandard2.0\Banana.Extension.MySql.pdb
+D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.dll
+D:\project\Banana\Banana.Extension.MySql\bin\Debug\netstandard2.0\Banana.pdb

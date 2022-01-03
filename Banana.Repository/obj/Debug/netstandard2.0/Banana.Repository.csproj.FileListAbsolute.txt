@@ -1,8 +1,6 @@
 D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.Repository.deps.json
 D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.Repository.dll
 D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.Repository.pdb
-D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.Core.dll
-D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.Core.pdb
 D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.csproj.AssemblyReference.cache
 D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.GeneratedMSBuildEditorConfig.editorconfig
 D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.AssemblyInfoInputs.cache
@@ -11,3 +9,5 @@ D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.c
 D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.csproj.CopyComplete
 D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.dll
 D:\project\Banana\Banana.Repository\obj\Debug\netstandard2.0\Banana.Repository.pdb
+D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.dll
+D:\project\Banana\Banana.Repository\bin\Debug\netstandard2.0\Banana.pdb
