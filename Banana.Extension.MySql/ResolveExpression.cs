@@ -10,7 +10,7 @@ using Banana;
 
 namespace Project.Dapper.Extension
 {
-    internal class ResolveExpression : IResolveExpression
+    internal class ResolveExpression : AbstractResolveExpression
     {
         public ResolveExpression(SqlProvider provider) : base(provider)
         {

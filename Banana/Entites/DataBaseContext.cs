@@ -14,7 +14,7 @@ namespace Banana
 
     public abstract class AbstractDataBaseContext
     {
-        public AbstractSet Set { get; set; }
+        public AbstractDapperSet Set { get; set; }
 
         public EOperateType OperateType { get; set; }
     }

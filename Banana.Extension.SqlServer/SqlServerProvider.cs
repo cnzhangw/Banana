@@ -13,14 +13,14 @@ namespace Banana.Extension.SqlServer
         private readonly static string OpenQuote = "[";
         private readonly static string CloseQuote = "]";
         private readonly static char ParameterPrefix = '@';
-        public override IResolveExpression ResolveExpression { get; set; }
+        public override AbstractResolveExpression ResolveExpression { get; set; }
         public SqlServerProvider()
         {
-            ProviderOption = new ProviderOption(OpenQuote, CloseQuote, ParameterPrefix);
+            ProviderOption = new Extension.ProviderOption(OpenQuote, CloseQuote, ParameterPrefix);
             ResolveExpression = new ResolveExpression(this);
         }
 
-        public sealed override IProviderOption ProviderOption { get; set; }
+        public sealed override Core.Interfaces.AbstractProviderOption ProviderOption { get; set; }
 
         public override SqlProvider FormatGet<T>()
         {

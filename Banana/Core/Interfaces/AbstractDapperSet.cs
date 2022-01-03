@@ -7,7 +7,7 @@ using Banana.Entites;
 
 namespace Banana.Core.Interfaces
 {
-	public abstract class AbstractSet
+	public abstract class AbstractDapperSet
 	{
 		/// <summary>
 		/// 数据解析提供方

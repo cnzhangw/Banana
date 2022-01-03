@@ -16,7 +16,7 @@ namespace Banana.Repository
         /// <param name="services"></param>
         /// <param name="setup"></param>
         /// <returns></returns>
-        public static IServiceCollection AddKogelRepository(this IServiceCollection services, Action<RepositoryOptionsBuilder> setup)
+        public static IServiceCollection AddBananaRepository(this IServiceCollection services, Action<RepositoryOptionsBuilder> setup)
         {
             services.AddTransient((x) =>
             {

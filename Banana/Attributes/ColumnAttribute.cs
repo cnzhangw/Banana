@@ -8,7 +8,7 @@ namespace Banana.Attributes
 	/// <summary>
 	/// 
 	/// </summary>
-	public class Display : BaseAttrbute
+	public class ColumnAttribute : BaseAttrbute
 	{
 		/// <summary>
 		/// 是否需要隐射该字段
@@ -63,7 +63,7 @@ namespace Banana.Attributes
 		/// <param name="Length">字段长度</param>
 		/// <param name="IsNull">是否为空</param>
 		/// <param name="DefaultValue">字段默认值</param>
-		public Display(string Name = null, string Description = null, string Rename = null, string Schema = null,
+		public ColumnAttribute(string Name = null, string Description = null, string Rename = null, string Schema = null,
 			string AsName = null, bool IsField = true, SqlDbType SqlDbType = SqlDbType.Structured, int Length = 0,
 			bool IfNull = default, object DefaultValue = null)
 		{

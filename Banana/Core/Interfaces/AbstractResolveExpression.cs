@@ -16,13 +16,13 @@ using Banana.Dapper;
 
 namespace Banana.Core.Interfaces
 {
-    public abstract class IResolveExpression
+    public abstract class AbstractResolveExpression
     {
         protected SqlProvider provider;
-        protected IProviderOption providerOption;
-        protected AbstractSet abstractSet => provider.Context.Set;
+        protected AbstractProviderOption providerOption;
+        protected AbstractDapperSet abstractSet => provider.Context.Set;
 
-        public IResolveExpression(SqlProvider provider)
+        public AbstractResolveExpression(SqlProvider provider)
         {
             this.provider = provider;
             this.providerOption = provider.ProviderOption;

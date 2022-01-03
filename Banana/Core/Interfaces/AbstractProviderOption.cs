@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Banana.Core.Interfaces
 {
-    public abstract class IProviderOption
+    public abstract class AbstractProviderOption
     {
-        public IProviderOption(string openQuote, string closeQuote, char parameterPrefix)
+        public AbstractProviderOption(string openQuote, string closeQuote, char parameterPrefix)
         {
             OpenQuote = openQuote;
             CloseQuote = closeQuote;

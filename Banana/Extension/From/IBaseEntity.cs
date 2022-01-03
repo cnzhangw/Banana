@@ -13,7 +13,7 @@ namespace Banana
 		/// <summary>
 		/// 主键id
 		/// </summary>
-		[Identity]
+		[PrimaryKeyAttribute]
 		public virtual TKey Id { get; set; }
 		/// <summary>
 		/// 获取主键值

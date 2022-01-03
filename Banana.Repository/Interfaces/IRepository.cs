@@ -10,7 +10,7 @@ using Banana.Core.Interfaces;
 
 namespace Banana.Repository.Interfaces
 {
-	public interface IBaseRepository<T>: IDisposable
+	public interface IRepository<T>: IDisposable
 	{
 		/// <summary>
 		/// 当前的连接对象

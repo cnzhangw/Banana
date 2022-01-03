@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Banana.Extension.MySql.Extension
 {
-	public class ProviderOption : IProviderOption
+	public class ProviderOption : Core.Interfaces.AbstractProviderOption
 	{
 		public ProviderOption(string openQuote, string closeQuote, char parameterPrefix) : base(openQuote, closeQuote, parameterPrefix)
 		{

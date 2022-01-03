@@ -145,7 +145,7 @@ namespace Banana.Extension
         /// <param name="data"></param>
         /// <param name="dbCon"></param>
         /// <returns></returns>
-        private static T SetNavigation<T>(this T data, IDbConnection dbCon, IProviderOption providerOption)
+        private static T SetNavigation<T>(this T data, IDbConnection dbCon, AbstractProviderOption providerOption)
         {
             if (providerOption.NavigationList.Any() && data != null)
             {
@@ -208,7 +208,7 @@ namespace Banana.Extension
         /// <param name="data"></param>
         /// <param name="DbCon"></param>
         /// <returns></returns>
-        private static List<T> SetNavigationList<T>(this List<T> data, IDbConnection dbCon, IProviderOption providerOption)
+        private static List<T> SetNavigationList<T>(this List<T> data, IDbConnection dbCon, AbstractProviderOption providerOption)
         {
             if (providerOption.NavigationList.Any() && data != null && data.Any())
             {

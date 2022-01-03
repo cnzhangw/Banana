@@ -8,7 +8,7 @@ using Banana.Entites;
 
 namespace Banana.Extension.SqlServer
 {
-    internal class ResolveExpression : IResolveExpression
+    internal class ResolveExpression : AbstractResolveExpression
 	{
 		public ResolveExpression(SqlProvider provider) : base(provider)
 		{

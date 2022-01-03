@@ -17,10 +17,10 @@ namespace Banana.Entites
             //指定as名称
             this.AsName = type.Name;
             //获取是否有Display特性
-            var typeAttribute = type.GetCustomAttributess(true).FirstOrDefault(x => x.GetType().Equals(typeof(Display)));
+            var typeAttribute = type.GetCustomAttributess(true).FirstOrDefault(x => x.GetType().Equals(typeof(ColumnAttribute)));
             if (typeAttribute != null)
             {
-                var display = typeAttribute as Display;
+                var display = typeAttribute as ColumnAttribute;
                 //是否有重命名
                 var rename = display.Rename;
                 if (!string.IsNullOrEmpty(rename))
@@ -88,10 +88,10 @@ namespace Banana.Entites
                     continue;
                 }
                 //当前字段属性设置
-                var fieldAttribute = item.GetCustomAttributes(true).FirstOrDefault(x => x.GetType().Equals(typeof(Display)));
+                var fieldAttribute = item.GetCustomAttributes(true).FirstOrDefault(x => x.GetType().Equals(typeof(ColumnAttribute)));
                 if (fieldAttribute != null)
                 {
-                    var display = fieldAttribute as Display;
+                    var display = fieldAttribute as ColumnAttribute;
                     //获取是否是表关系隐射字段
                     if (display.IsField)
                     {
@@ -135,12 +135,12 @@ namespace Banana.Entites
                 if (string.IsNullOrEmpty(Identitys))
                 {
                     //当前字段是主键
-                    var identityAttribute = item.GetCustomAttributes(true).FirstOrDefault(x => x.GetType().Equals(typeof(Identity)));
+                    var identityAttribute = item.GetCustomAttributes(true).FirstOrDefault(x => x.GetType().Equals(typeof(PrimaryKeyAttribute)));
                     if (identityAttribute != null)
                     {
                         this.Identitys = this.FieldPairs[item.Name];
                         EntityFieldList[EntityFieldList.Count - 1].IsIdentity = true;
-                        EntityFieldList[EntityFieldList.Count - 1].IsIncrease = (identityAttribute as Identity).IsIncrease;
+                        EntityFieldList[EntityFieldList.Count - 1].IsIncrease = (identityAttribute as PrimaryKeyAttribute).AutoIncrement;
                     }
                 }
             }

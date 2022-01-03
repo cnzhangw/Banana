@@ -12,7 +12,7 @@ using Banana.Dapper;
 
 namespace Banana.Repository
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T>
+    public abstract class AbstractRepository<T> : IRepository<T>
     {
         /// <summary>
         /// 
@@ -32,7 +32,7 @@ namespace Banana.Repository
         /// </summary>
         public IUnitOfWork UnitOfWork { get; set; }
 
-        public BaseRepository()
+        public AbstractRepository()
         {
             RepositoryOptionsBuilder builder = new RepositoryOptionsBuilder();
             OnConfiguring(builder);
@@ -43,7 +43,7 @@ namespace Banana.Repository
             SyncStructure();
         }
 
-        public BaseRepository(RepositoryOptionsBuilder repositoryOptions)
+        public AbstractRepository(RepositoryOptionsBuilder repositoryOptions)
         {
             OnConfiguring(repositoryOptions);
             this.Options = repositoryOptions;
@@ -53,7 +53,7 @@ namespace Banana.Repository
             SyncStructure();
         }
 
-        ~BaseRepository()
+        ~AbstractRepository()
         {
             Dispose();
         }

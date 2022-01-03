@@ -12,7 +12,7 @@ namespace Banana.Core.SetC
     /// 指令
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Command<T> : AbstractSet, ICommand<T>
+    public abstract class Command<T> : AbstractDapperSet, ICommand<T>
     {
         public readonly IDbConnection DbCon;
         public IDbTransaction DbTransaction { get; private set; }

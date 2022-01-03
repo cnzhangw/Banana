@@ -37,7 +37,7 @@ namespace Banana.Expressions
         /// <summary>
         /// 提供方选项
         /// </summary>
-        protected IProviderOption providerOption;
+        protected AbstractProviderOption providerOption;
 
         public BaseExpressionVisitor(SqlProvider provider)
         {

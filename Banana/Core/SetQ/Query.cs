@@ -15,7 +15,7 @@ namespace Banana.Core.SetQ
     /// 查询
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Query<T> : AbstractSet, IQuery<T>
+    public abstract class Query<T> : AbstractDapperSet, IQuery<T>
     {
         public readonly IDbConnection DbCon;
         public readonly IDbTransaction DbTransaction;

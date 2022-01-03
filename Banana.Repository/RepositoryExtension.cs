@@ -16,7 +16,7 @@ namespace Banana.Repository
     public static class RepositoryExtension
     {
 
-        public class BaseRepositoryExtension<T> : BaseRepository<T>, IRepository<T>
+        public class BaseRepositoryExtension<T> : AbstractRepository<T>, IRepository<T>
         {
             public BaseRepositoryExtension(RepositoryOptionsBuilder options) : base(options)
             {
@@ -33,7 +33,7 @@ namespace Banana.Repository
         /// <typeparam name="T"></typeparam>
         /// <param name="querySet"></param>
         /// <returns></returns>
-        public static IBaseRepository<T> GetRepository<T>(this IQuerySet<T> querySet)
+        public static IRepository<T> GetRepository<T>(this IQuerySet<T> querySet)
         {
             return (querySet as QuerySet<T>).GetRepository();
         }
@@ -44,7 +44,7 @@ namespace Banana.Repository
         /// <typeparam name="T"></typeparam>
         /// <param name="querySet"></param>
         /// <returns></returns>
-        public static IBaseRepository<T> GetRepository<T>(this QuerySet<T> querySet)
+        public static IRepository<T> GetRepository<T>(this QuerySet<T> querySet)
         {
             //从基础querySet对象中取出连接对象和提供方
             var options = new RepositoryOptionsBuilder();
@@ -61,7 +61,7 @@ namespace Banana.Repository
         /// <typeparam name="T"></typeparam>
         /// <param name="commandSet"></param>
         /// <returns></returns>
-        public static IBaseRepository<T> GetRepository<T>(this ICommandSet<T> commandSet)
+        public static IRepository<T> GetRepository<T>(this ICommandSet<T> commandSet)
         {
             return (commandSet as CommandSet<T>).GetRepository();
         }
@@ -72,7 +72,7 @@ namespace Banana.Repository
         /// <typeparam name="T"></typeparam>
         /// <param name="commandSet"></param>
         /// <returns></returns>
-        public static IBaseRepository<T> GetRepository<T>(this CommandSet<T> commandSet)
+        public static IRepository<T> GetRepository<T>(this CommandSet<T> commandSet)
         {
             //从基础querySet对象中取出连接对象和提供方
             var options = new RepositoryOptionsBuilder();
@@ -132,12 +132,11 @@ namespace Banana.Repository
         }
     }
 
-    /// <summary>
-    /// 简化仓储名称
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IRepository<T> : IBaseRepository<T>
-    {
-
-    }
+    ///// <summary>
+    ///// 简化仓储名称
+    ///// </summary>
+    ///// <typeparam name="T"></typeparam>
+    //public interface IRepository<T> : IBaseRepository<T>
+    //{
+    //}
 }

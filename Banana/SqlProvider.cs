@@ -25,12 +25,12 @@ namespace Banana
         /// <summary>
         /// 工具方
         /// </summary>
-        public abstract IProviderOption ProviderOption { get; set; }
+        public abstract AbstractProviderOption ProviderOption { get; set; }
 
         /// <summary>
         /// 解析者
         /// </summary>
-        public abstract IResolveExpression ResolveExpression { get; set; }
+        public abstract AbstractResolveExpression ResolveExpression { get; set; }
 
         /// <summary>
         /// 生成的sql
