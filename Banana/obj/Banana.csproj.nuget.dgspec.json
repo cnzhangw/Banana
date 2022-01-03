@@ -46,6 +46,10 @@
               "version": "[2.0.3, )",
               "autoReferenced": true
             },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            },
             "System.Reflection.Emit.ILGeneration": {
               "target": "Package",
               "version": "[4.7.0, )"

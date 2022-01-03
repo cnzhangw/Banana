@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+#if !NETSTANDARD1_3
 namespace Banana.Dapper
 {
     internal sealed class DataTableHandler : SqlMapper.ITypeHandler
@@ -15,3 +16,4 @@ namespace Banana.Dapper
         }
     }
 }
+#endif

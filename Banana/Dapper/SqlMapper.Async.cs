@@ -13,7 +13,7 @@ namespace Banana.Dapper
     public static partial class SqlMapper
     {
         /// <summary>
-        /// Execute a query asynchronously using Task.
+        /// Execute a query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="sql">The SQL to execute for the query.</param>
@@ -23,10 +23,10 @@ namespace Banana.Dapper
         /// <param name="commandType">The type of command to execute.</param>
         /// <remarks>Note: each row can be accessed via "dynamic", or by casting to an IDictionary&lt;string,object&gt;</remarks>
         public static Task<IEnumerable<dynamic>> QueryAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryAsync<dynamic>(cnn, typeof(DapperRow), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, default(CancellationToken)));
+            QueryAsync<dynamic>(cnn, typeof(DapperRow), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a query asynchronously using Task.
+        /// Execute a query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="command">The command used to query on this connection.</param>
@@ -35,7 +35,7 @@ namespace Banana.Dapper
             QueryAsync<dynamic>(cnn, typeof(DapperRow), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="command">The command used to query on this connection.</param>
@@ -44,7 +44,7 @@ namespace Banana.Dapper
             QueryRowAsync<dynamic>(cnn, Row.First, typeof(DapperRow), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="command">The command used to query on this connection.</param>
@@ -53,7 +53,7 @@ namespace Banana.Dapper
             QueryRowAsync<dynamic>(cnn, Row.FirstOrDefault, typeof(DapperRow), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="command">The command used to query on this connection.</param>
@@ -62,7 +62,7 @@ namespace Banana.Dapper
             QueryRowAsync<dynamic>(cnn, Row.Single, typeof(DapperRow), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="command">The command used to query on this connection.</param>
@@ -71,7 +71,7 @@ namespace Banana.Dapper
             QueryRowAsync<dynamic>(cnn, Row.SingleOrDefault, typeof(DapperRow), command);
 
         /// <summary>
-        /// Execute a query asynchronously using Task.
+        /// Execute a query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type of results to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -84,11 +84,13 @@ namespace Banana.Dapper
         /// A sequence of data of <typeparamref name="T"/>; if a basic type (int, string, etc) is queried then the data from the first column in assumed, otherwise an instance is
         /// created per row, and a direct column-name===member-name mapping is assumed (case insensitive).
         /// </returns>
-        public static Task<IEnumerable<T>> QueryAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryAsync<T>(cnn, typeof(T), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, default(CancellationToken)));
+        public static Task<IEnumerable<T>> QueryAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null, bool IsExcludeUnitOfWork = false) =>
+            QueryAsync<T>(cnn, typeof(T), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered,
+                default(CancellationToken), IsExcludeUnitOfWork));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type of result to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -98,10 +100,10 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
         public static Task<T> QueryFirstAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<T>(cnn, Row.First, typeof(T), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            QueryRowAsync<T>(cnn, Row.First, typeof(T), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type of result to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -110,11 +112,14 @@ namespace Banana.Dapper
         /// <param name="transaction">The transaction to use, if any.</param>
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
-        public static Task<T> QueryFirstOrDefaultAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<T>(cnn, Row.FirstOrDefault, typeof(T), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+        public static Task<T> QueryFirstOrDefaultAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null, bool isExcludeUnitOfWork = false) =>
+            QueryRowAsync<T>(cnn, Row.FirstOrDefault, typeof(T),
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType,
+                CommandFlags.None, default(CancellationToken), isExcludeUnitOfWork));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type of result to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -124,10 +129,10 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
         public static Task<T> QuerySingleAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<T>(cnn, Row.Single, typeof(T), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            QueryRowAsync<T>(cnn, Row.Single, typeof(T), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -136,11 +141,13 @@ namespace Banana.Dapper
         /// <param name="transaction">The transaction to use, if any.</param>
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
-        public static Task<T> QuerySingleOrDefaultAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<T>(cnn, Row.SingleOrDefault, typeof(T), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+        public static Task<T> QuerySingleOrDefaultAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null, bool isExcludeUnitOfWork = false) =>
+            QueryRowAsync<T>(cnn, Row.SingleOrDefault, typeof(T), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType,
+                CommandFlags.None, default(CancellationToken), isExcludeUnitOfWork: isExcludeUnitOfWork));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="sql">The SQL to execute for the query.</param>
@@ -149,10 +156,10 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
         public static Task<dynamic> QueryFirstAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<dynamic>(cnn, Row.First, typeof(DapperRow), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            QueryRowAsync<dynamic>(cnn, Row.First, typeof(DapperRow), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="sql">The SQL to execute for the query.</param>
@@ -161,10 +168,10 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
         public static Task<dynamic> QueryFirstOrDefaultAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<dynamic>(cnn, Row.FirstOrDefault, typeof(DapperRow), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            QueryRowAsync<dynamic>(cnn, Row.FirstOrDefault, typeof(DapperRow), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="sql">The SQL to execute for the query.</param>
@@ -173,10 +180,10 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
         public static Task<dynamic> QuerySingleAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<dynamic>(cnn, Row.Single, typeof(DapperRow), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            QueryRowAsync<dynamic>(cnn, Row.Single, typeof(DapperRow), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="sql">The SQL to execute for the query.</param>
@@ -185,10 +192,10 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">The command timeout (in seconds).</param>
         /// <param name="commandType">The type of command to execute.</param>
         public static Task<dynamic> QuerySingleOrDefaultAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryRowAsync<dynamic>(cnn, Row.SingleOrDefault, typeof(DapperRow), new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            QueryRowAsync<dynamic>(cnn, Row.SingleOrDefault, typeof(DapperRow), new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
 
         /// <summary>
-        /// Execute a query asynchronously using Task.
+        /// Execute a query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -201,11 +208,11 @@ namespace Banana.Dapper
         public static Task<IEnumerable<object>> QueryAsync(this IDbConnection cnn, Type type, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
-            return QueryAsync<object>(cnn, type, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, default(CancellationToken)));
+            return QueryAsync<object>(cnn, type, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, default(CancellationToken)));
         }
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -218,10 +225,10 @@ namespace Banana.Dapper
         public static Task<object> QueryFirstAsync(this IDbConnection cnn, Type type, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
-            return QueryRowAsync<object>(cnn, Row.First, type, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            return QueryRowAsync<object>(cnn, Row.First, type, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
         }
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -234,10 +241,10 @@ namespace Banana.Dapper
         public static Task<object> QueryFirstOrDefaultAsync(this IDbConnection cnn, Type type, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
-            return QueryRowAsync<object>(cnn, Row.FirstOrDefault, type, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            return QueryRowAsync<object>(cnn, Row.FirstOrDefault, type, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
         }
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -250,10 +257,10 @@ namespace Banana.Dapper
         public static Task<object> QuerySingleAsync(this IDbConnection cnn, Type type, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
-            return QueryRowAsync<object>(cnn, Row.Single, type, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            return QueryRowAsync<object>(cnn, Row.Single, type, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
         }
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -266,11 +273,11 @@ namespace Banana.Dapper
         public static Task<object> QuerySingleOrDefaultAsync(this IDbConnection cnn, Type type, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
-            return QueryRowAsync<object>(cnn, Row.SingleOrDefault, type, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
+            return QueryRowAsync<object>(cnn, Row.SingleOrDefault, type, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.None, default(CancellationToken)));
         }
 
         /// <summary>
-        /// Execute a query asynchronously using Task.
+        /// Execute a query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -283,7 +290,7 @@ namespace Banana.Dapper
             QueryAsync<T>(cnn, typeof(T), command);
 
         /// <summary>
-        /// Execute a query asynchronously using Task.
+        /// Execute a query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -292,7 +299,7 @@ namespace Banana.Dapper
             QueryAsync<object>(cnn, type, command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -301,7 +308,7 @@ namespace Banana.Dapper
             QueryRowAsync<object>(cnn, Row.First, type, command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -310,7 +317,7 @@ namespace Banana.Dapper
             QueryRowAsync<T>(cnn, Row.First, typeof(T), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -319,7 +326,7 @@ namespace Banana.Dapper
             QueryRowAsync<object>(cnn, Row.FirstOrDefault, type, command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -328,7 +335,7 @@ namespace Banana.Dapper
             QueryRowAsync<T>(cnn, Row.FirstOrDefault, typeof(T), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -337,7 +344,7 @@ namespace Banana.Dapper
             QueryRowAsync<object>(cnn, Row.Single, type, command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -346,7 +353,7 @@ namespace Banana.Dapper
             QueryRowAsync<T>(cnn, Row.Single, typeof(T), command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="type">The type to return.</param>
@@ -355,7 +362,7 @@ namespace Banana.Dapper
             QueryRowAsync<object>(cnn, Row.SingleOrDefault, type, command);
 
         /// <summary>
-        /// Execute a single-row query asynchronously using Task.
+        /// Execute a single-row query asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to query on.</param>
@@ -376,7 +383,7 @@ namespace Banana.Dapper
         /// <summary>
         /// Attempts to open a connection asynchronously, with a better error message for unsupported usages.
         /// </summary>
-        private static Task TryOpenAsync(this IDbConnection cnn, CancellationToken cancel)
+        public static Task TryOpenAsync(this IDbConnection cnn, CancellationToken cancel)
         {
             if (cnn is DbConnection dbConn)
             {
@@ -405,8 +412,9 @@ namespace Banana.Dapper
 
         private static async Task<IEnumerable<T>> QueryAsync<T>(this IDbConnection cnn, Type effectiveType, CommandDefinition command)
         {
+            Aop.InvokeExecuting(ref command);
             object param = command.Parameters;
-            var identity = new Identity(command.CommandText, command.CommandType, cnn, effectiveType, param?.GetType());
+            var identity = new Identity(command.CommandText, command.CommandType, cnn, effectiveType, param?.GetType(), null);
             var info = GetCacheInfo(identity, param, command.AddToCache);
             bool wasClosed = cnn.State == ConnectionState.Closed;
             var cancel = command.CancellationToken;
@@ -463,14 +471,17 @@ namespace Banana.Dapper
                 {
                     using (reader) { /* dispose if non-null */ }
                     if (wasClosed) cnn.Close();
+
+                    Aop.InvokeExecuted(ref command);
                 }
             }
         }
 
         private static async Task<T> QueryRowAsync<T>(this IDbConnection cnn, Row row, Type effectiveType, CommandDefinition command)
         {
+            Aop.InvokeExecuting(ref command);
             object param = command.Parameters;
-            var identity = new Identity(command.CommandText, command.CommandType, cnn, effectiveType, param?.GetType());
+            var identity = new Identity(command.CommandText, command.CommandType, cnn, effectiveType, param?.GetType(), null);
             var info = GetCacheInfo(identity, param, command.AddToCache);
             bool wasClosed = cnn.State == ConnectionState.Closed;
             var cancel = command.CancellationToken;
@@ -521,12 +532,13 @@ namespace Banana.Dapper
                 {
                     using (reader) { /* dispose if non-null */ }
                     if (wasClosed) cnn.Close();
+                    Aop.InvokeExecuted(ref command);
                 }
             }
         }
 
         /// <summary>
-        /// Execute a command asynchronously using Task.
+        /// Execute a command asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to query on.</param>
         /// <param name="sql">The SQL to execute for this query.</param>
@@ -535,11 +547,13 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">Number of seconds before command execution timeout.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
         /// <returns>The number of rows affected.</returns>
-        public static Task<int> ExecuteAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            ExecuteAsync(cnn, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, default(CancellationToken)));
+        public static Task<int> ExecuteAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null, bool isExcludeUnitOfWork = false) =>
+            ExecuteAsync(cnn, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered,
+                default(CancellationToken), isExcludeUnitOfWork));
 
         /// <summary>
-        /// Execute a command asynchronously using Task.
+        /// Execute a command asynchronously using .NET 4.5 Task.
         /// </summary>
         /// <param name="cnn">The connection to execute on.</param>
         /// <param name="command">The command to execute on this connection.</param>
@@ -571,6 +585,7 @@ namespace Banana.Dapper
 
         private static async Task<int> ExecuteMultiImplAsync(IDbConnection cnn, CommandDefinition command, IEnumerable multiExec)
         {
+            Aop.InvokeExecuting(ref command);
             bool isFirst = true;
             int total = 0;
             bool wasClosed = cnn.State == ConnectionState.Closed;
@@ -594,7 +609,7 @@ namespace Banana.Dapper
                                 isFirst = false;
                                 cmd = command.TrySetupAsyncCommand(cnn, null);
                                 masterSql = cmd.CommandText;
-                                var identity = new Identity(command.CommandText, cmd.CommandType, cnn, null, obj.GetType());
+                                var identity = new Identity(command.CommandText, cmd.CommandType, cnn, null, obj.GetType(), null);
                                 info = GetCacheInfo(identity, obj, command.AddToCache);
                             }
                             else if (pending.Count >= MAX_PENDING)
@@ -642,7 +657,7 @@ namespace Banana.Dapper
                             {
                                 masterSql = cmd.CommandText;
                                 isFirst = false;
-                                var identity = new Identity(command.CommandText, cmd.CommandType, cnn, null, obj.GetType());
+                                var identity = new Identity(command.CommandText, cmd.CommandType, cnn, null, obj.GetType(), null);
                                 info = GetCacheInfo(identity, obj, command.AddToCache);
                             }
                             else
@@ -661,13 +676,15 @@ namespace Banana.Dapper
             finally
             {
                 if (wasClosed) cnn.Close();
+                Aop.InvokeExecuted(ref command);
             }
             return total;
         }
 
         private static async Task<int> ExecuteImplAsync(IDbConnection cnn, CommandDefinition command, object param)
         {
-            var identity = new Identity(command.CommandText, command.CommandType, cnn, null, param?.GetType());
+            Aop.InvokeExecuting(ref command);
+            var identity = new Identity(command.CommandText, command.CommandType, cnn, null, param?.GetType(), null);
             var info = GetCacheInfo(identity, param, command.AddToCache);
             bool wasClosed = cnn.State == ConnectionState.Closed;
             using (var cmd = command.TrySetupAsyncCommand(cnn, info.ParamReader))
@@ -682,12 +699,13 @@ namespace Banana.Dapper
                 finally
                 {
                     if (wasClosed) cnn.Close();
+                    Aop.InvokeExecuted(ref command);
                 }
             }
         }
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 2 input types.
+        /// Perform a asynchronous multi-mapping query with 2 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -705,10 +723,10 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             MultiMapAsync<TFirst, TSecond, DontMap, DontMap, DontMap, DontMap, DontMap, TReturn>(cnn,
-                new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 2 input types.
+        /// Perform a asynchronous multi-mapping query with 2 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -723,7 +741,7 @@ namespace Banana.Dapper
             MultiMapAsync<TFirst, TSecond, DontMap, DontMap, DontMap, DontMap, DontMap, TReturn>(cnn, command, map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 3 input types.
+        /// Perform a asynchronous multi-mapping query with 3 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -742,10 +760,10 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TThird, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             MultiMapAsync<TFirst, TSecond, TThird, DontMap, DontMap, DontMap, DontMap, TReturn>(cnn,
-                new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 3 input types.
+        /// Perform a asynchronous multi-mapping query with 3 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -761,7 +779,7 @@ namespace Banana.Dapper
             MultiMapAsync<TFirst, TSecond, TThird, DontMap, DontMap, DontMap, DontMap, TReturn>(cnn, command, map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 4 input types.
+        /// Perform a asynchronous multi-mapping query with 4 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -781,10 +799,10 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             MultiMapAsync<TFirst, TSecond, TThird, TFourth, DontMap, DontMap, DontMap, TReturn>(cnn,
-                new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 4 input types.
+        /// Perform a asynchronous multi-mapping query with 4 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -801,7 +819,7 @@ namespace Banana.Dapper
             MultiMapAsync<TFirst, TSecond, TThird, TFourth, DontMap, DontMap, DontMap, TReturn>(cnn, command, map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 5 input types.
+        /// Perform a asynchronous multi-mapping query with 5 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -822,10 +840,10 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             MultiMapAsync<TFirst, TSecond, TThird, TFourth, TFifth, DontMap, DontMap, TReturn>(cnn,
-                new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 5 input types.
+        /// Perform a asynchronous multi-mapping query with 5 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -843,7 +861,7 @@ namespace Banana.Dapper
             MultiMapAsync<TFirst, TSecond, TThird, TFourth, TFifth, DontMap, DontMap, TReturn>(cnn, command, map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 6 input types.
+        /// Perform a asynchronous multi-mapping query with 6 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -865,10 +883,10 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             MultiMapAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, DontMap, TReturn>(cnn,
-                new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 6 input types.
+        /// Perform a asynchronous multi-mapping query with 6 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -887,7 +905,7 @@ namespace Banana.Dapper
              MultiMapAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, DontMap, TReturn>(cnn, command, map, splitOn);
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with 7 input types.
+        /// Perform a asynchronous multi-mapping query with 7 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -910,10 +928,10 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null) =>
             MultiMapAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(cnn,
-                new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
+                new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken)), map, splitOn);
 
         /// <summary>
-        /// Perform an asynchronous multi-mapping query with 7 input types.
+        /// Perform an asynchronous multi-mapping query with 7 input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TFirst">The first type in the recordset.</typeparam>
@@ -934,8 +952,9 @@ namespace Banana.Dapper
 
         private static async Task<IEnumerable<TReturn>> MultiMapAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(this IDbConnection cnn, CommandDefinition command, Delegate map, string splitOn)
         {
+            Aop.InvokeExecuting(ref command);
             object param = command.Parameters;
-            var identity = new Identity<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh>(command.CommandText, command.CommandType, cnn, typeof(TFirst), param?.GetType());
+            var identity = new Identity(command.CommandText, command.CommandType, cnn, typeof(TFirst), param?.GetType(), new[] { typeof(TFirst), typeof(TSecond), typeof(TThird), typeof(TFourth), typeof(TFifth), typeof(TSixth), typeof(TSeventh) });
             var info = GetCacheInfo(identity, param, command.AddToCache);
             bool wasClosed = cnn.State == ConnectionState.Closed;
             try
@@ -952,11 +971,12 @@ namespace Banana.Dapper
             finally
             {
                 if (wasClosed) cnn.Close();
+                Aop.InvokeExecuted(ref command);
             }
         }
 
         /// <summary>
-        /// Perform a asynchronous multi-mapping query with an arbitrary number of input types.
+        /// Perform a asynchronous multi-mapping query with an arbitrary number of input types. 
         /// This returns a single type, combined from the raw types via <paramref name="map"/>.
         /// </summary>
         /// <typeparam name="TReturn">The combined type to return.</typeparam>
@@ -973,19 +993,20 @@ namespace Banana.Dapper
         /// <returns>An enumerable of <typeparamref name="TReturn"/>.</returns>
         public static Task<IEnumerable<TReturn>> QueryAsync<TReturn>(this IDbConnection cnn, string sql, Type[] types, Func<object[], TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null)
         {
-            var command = new CommandDefinition(sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken));
+            var command = new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, buffered ? CommandFlags.Buffered : CommandFlags.None, default(CancellationToken));
             return MultiMapAsync(cnn, command, types, map, splitOn);
         }
 
         private static async Task<IEnumerable<TReturn>> MultiMapAsync<TReturn>(this IDbConnection cnn, CommandDefinition command, Type[] types, Func<object[], TReturn> map, string splitOn)
         {
+            Aop.InvokeExecuting(ref command);
             if (types.Length < 1)
             {
                 throw new ArgumentException("you must provide at least one type to deserialize");
             }
 
             object param = command.Parameters;
-            var identity = new IdentityWithTypes(command.CommandText, command.CommandType, cnn, types[0], param?.GetType(), types);
+            var identity = new Identity(command.CommandText, command.CommandType, cnn, types[0], param?.GetType(), types);
             var info = GetCacheInfo(identity, param, command.AddToCache);
             bool wasClosed = cnn.State == ConnectionState.Closed;
             try
@@ -1001,6 +1022,7 @@ namespace Banana.Dapper
             finally
             {
                 if (wasClosed) cnn.Close();
+                Aop.InvokeExecuted(ref command);
             }
         }
 
@@ -1027,7 +1049,7 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">Number of seconds before command execution timeout.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
         public static Task<GridReader> QueryMultipleAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            QueryMultipleAsync(cnn, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered));
+            QueryMultipleAsync(cnn, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered));
 
         /// <summary>
         /// Execute a command that returns multiple result sets, and access each in turn.
@@ -1036,8 +1058,9 @@ namespace Banana.Dapper
         /// <param name="command">The command to execute for this query.</param>
         public static async Task<GridReader> QueryMultipleAsync(this IDbConnection cnn, CommandDefinition command)
         {
+            Aop.InvokeExecuting(ref command);
             object param = command.Parameters;
-            var identity = new Identity(command.CommandText, command.CommandType, cnn, typeof(GridReader), param?.GetType());
+            var identity = new Identity(command.CommandText, command.CommandType, cnn, typeof(GridReader), param?.GetType(), null);
             CacheInfo info = GetCacheInfo(identity, param, command.AddToCache);
 
             DbCommand cmd = null;
@@ -1073,6 +1096,10 @@ namespace Banana.Dapper
                 if (wasClosed) cnn.Close();
                 throw;
             }
+            finally
+            {
+                Aop.InvokeExecuted(ref command);
+            }
         }
 
         /// <summary>
@@ -1101,19 +1128,7 @@ namespace Banana.Dapper
         /// </code>
         /// </example>
         public static Task<IDataReader> ExecuteReaderAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            ExecuteWrappedReaderImplAsync(cnn, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered), CommandBehavior.Default).CastResult<DbDataReader, IDataReader>();
-
-        /// <summary>
-        /// Execute parameterized SQL and return a <see cref="DbDataReader"/>.
-        /// </summary>
-        /// <param name="cnn">The connection to execute on.</param>
-        /// <param name="sql">The SQL to execute.</param>
-        /// <param name="param">The parameters to use for this command.</param>
-        /// <param name="transaction">The transaction to use for this command.</param>
-        /// <param name="commandTimeout">Number of seconds before command execution timeout.</param>
-        /// <param name="commandType">Is it a stored proc or a batch?</param>
-        public static Task<DbDataReader> ExecuteReaderAsync(this DbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            ExecuteWrappedReaderImplAsync(cnn, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered), CommandBehavior.Default);
+            ExecuteReaderImplAsync(cnn, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered), CommandBehavior.Default);
 
         /// <summary>
         /// Execute parameterized SQL and return an <see cref="IDataReader"/>.
@@ -1126,15 +1141,7 @@ namespace Banana.Dapper
         /// or <see cref="T:DataSet"/>.
         /// </remarks>
         public static Task<IDataReader> ExecuteReaderAsync(this IDbConnection cnn, CommandDefinition command) =>
-            ExecuteWrappedReaderImplAsync(cnn, command, CommandBehavior.Default).CastResult<DbDataReader, IDataReader>();
-
-        /// <summary>
-        /// Execute parameterized SQL and return a <see cref="DbDataReader"/>.
-        /// </summary>
-        /// <param name="cnn">The connection to execute on.</param>
-        /// <param name="command">The command to execute.</param>
-        public static Task<DbDataReader> ExecuteReaderAsync(this DbConnection cnn, CommandDefinition command) =>
-            ExecuteWrappedReaderImplAsync(cnn, command, CommandBehavior.Default);
+            ExecuteReaderImplAsync(cnn, command, CommandBehavior.Default);
 
         /// <summary>
         /// Execute parameterized SQL and return an <see cref="IDataReader"/>.
@@ -1148,36 +1155,28 @@ namespace Banana.Dapper
         /// or <see cref="T:DataSet"/>.
         /// </remarks>
         public static Task<IDataReader> ExecuteReaderAsync(this IDbConnection cnn, CommandDefinition command, CommandBehavior commandBehavior) =>
-            ExecuteWrappedReaderImplAsync(cnn, command, commandBehavior).CastResult<DbDataReader, IDataReader>();
+            ExecuteReaderImplAsync(cnn, command, commandBehavior);
 
-        /// <summary>
-        /// Execute parameterized SQL and return a <see cref="DbDataReader"/>.
-        /// </summary>
-        /// <param name="cnn">The connection to execute on.</param>
-        /// <param name="command">The command to execute.</param>
-        /// <param name="commandBehavior">The <see cref="CommandBehavior"/> flags for this reader.</param>
-        public static Task<DbDataReader> ExecuteReaderAsync(this DbConnection cnn, CommandDefinition command, CommandBehavior commandBehavior) =>
-            ExecuteWrappedReaderImplAsync(cnn, command, commandBehavior);
-
-        private static async Task<DbDataReader> ExecuteWrappedReaderImplAsync(IDbConnection cnn, CommandDefinition command, CommandBehavior commandBehavior)
+        private static async Task<IDataReader> ExecuteReaderImplAsync(IDbConnection cnn, CommandDefinition command, CommandBehavior commandBehavior)
         {
+            Aop.InvokeExecuting(ref command);
             Action<IDbCommand, object> paramReader = GetParameterReader(cnn, ref command);
 
             DbCommand cmd = null;
-            bool wasClosed = cnn.State == ConnectionState.Closed, disposeCommand = true;
+            bool wasClosed = cnn.State == ConnectionState.Closed;
             try
             {
                 cmd = command.TrySetupAsyncCommand(cnn, paramReader);
                 if (wasClosed) await cnn.TryOpenAsync(command.CancellationToken).ConfigureAwait(false);
                 var reader = await ExecuteReaderWithFlagsFallbackAsync(cmd, wasClosed, commandBehavior, command.CancellationToken).ConfigureAwait(false);
                 wasClosed = false;
-                disposeCommand = false;
-                return WrappedReader.Create(cmd, reader);
+                return reader;
             }
             finally
             {
                 if (wasClosed) cnn.Close();
-                if (cmd != null && disposeCommand) cmd.Dispose();
+                cmd?.Dispose();
+                Aop.InvokeExecuted(ref command);
             }
         }
 
@@ -1191,8 +1190,9 @@ namespace Banana.Dapper
         /// <param name="commandTimeout">Number of seconds before command execution timeout.</param>
         /// <param name="commandType">Is it a stored proc or a batch?</param>
         /// <returns>The first cell returned, as <see cref="object"/>.</returns>
-        public static Task<object> ExecuteScalarAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            ExecuteScalarImplAsync<object>(cnn, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered));
+        public static Task<object> ExecuteScalarAsync(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null, bool isExcludeUnitOfWork = false) =>
+            ExecuteScalarImplAsync<object>(cnn, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered, isExcludeUnitOfWork: isExcludeUnitOfWork));
 
         /// <summary>
         /// Execute parameterized SQL that selects a single value.
@@ -1206,7 +1206,7 @@ namespace Banana.Dapper
         /// <param name="commandType">Is it a stored proc or a batch?</param>
         /// <returns>The first cell returned, as <typeparamref name="T"/>.</returns>
         public static Task<T> ExecuteScalarAsync<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null) =>
-            ExecuteScalarImplAsync<T>(cnn, new CommandDefinition(sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered));
+            ExecuteScalarImplAsync<T>(cnn, new CommandDefinition(cnn, sql, param, transaction, commandTimeout, commandType, CommandFlags.Buffered));
 
         /// <summary>
         /// Execute parameterized SQL that selects a single value.
@@ -1218,7 +1218,7 @@ namespace Banana.Dapper
             ExecuteScalarImplAsync<object>(cnn, command);
 
         /// <summary>
-        /// Execute parameterized SQL that selects a single value.
+        /// Execute parameterized SQL that selects a single value
         /// </summary>
         /// <typeparam name="T">The type to return.</typeparam>
         /// <param name="cnn">The connection to execute on.</param>
@@ -1229,11 +1229,12 @@ namespace Banana.Dapper
 
         private static async Task<T> ExecuteScalarImplAsync<T>(IDbConnection cnn, CommandDefinition command)
         {
+            Aop.InvokeExecuting(ref command);
             Action<IDbCommand, object> paramReader = null;
             object param = command.Parameters;
             if (param != null)
             {
-                var identity = new Identity(command.CommandText, command.CommandType, cnn, null, param.GetType());
+                var identity = new Identity(command.CommandText, command.CommandType, cnn, null, param.GetType(), null);
                 paramReader = GetCacheInfo(identity, command.Parameters, command.AddToCache).ParamReader;
             }
 
@@ -1251,6 +1252,7 @@ namespace Banana.Dapper
             {
                 if (wasClosed) cnn.Close();
                 cmd?.Dispose();
+                Aop.InvokeExecuted(ref command);
             }
             return Parse<T>(result);
         }

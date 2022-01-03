@@ -5,6 +5,7 @@ namespace Banana.Dapper
 {
     public static partial class SqlMapper
     {
+#if !NETSTANDARD1_3 && !NETSTANDARD2_0
         /// <summary>
         /// A type handler for data-types that are supported by the underlying provider, but which need
         /// a well-known UdtTypeName to be specified
@@ -32,8 +33,13 @@ namespace Banana.Dapper
 #pragma warning disable 0618
                 parameter.Value = SanitizeParameterValue(value);
 #pragma warning restore 0618
-                if(!(value is DBNull)) StructuredHelper.ConfigureUDT(parameter, udtTypeName);
+                if (parameter is System.Data.SqlClient.SqlParameter && !(value is DBNull))
+                {
+                    ((System.Data.SqlClient.SqlParameter)parameter).SqlDbType = SqlDbType.Udt;
+                    ((System.Data.SqlClient.SqlParameter)parameter).UdtTypeName = udtTypeName;
+                }
             }
         }
+#endif
     }
 }

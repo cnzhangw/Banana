@@ -11,7 +11,9 @@ namespace Banana.Dapper
         /// </summary>
         /// <typeparam name="T">The type to have a cache for.</typeparam>
         [Obsolete(ObsoleteInternalUsageOnly, false)]
+#if !NETSTANDARD1_3
         [Browsable(false)]
+#endif
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static class TypeHandlerCache<T>
         {

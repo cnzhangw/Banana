@@ -4,8 +4,7 @@ using System.Data;
 
 namespace Banana.Dapper
 {
-    internal sealed class SqlDataRecordHandler<T> : SqlMapper.ITypeHandler
-        where T : IDataRecord
+    internal sealed class SqlDataRecordHandler : SqlMapper.ITypeHandler
     {
         public object Parse(Type destinationType, object value)
         {
@@ -14,7 +13,7 @@ namespace Banana.Dapper
 
         public void SetValue(IDbDataParameter parameter, object value)
         {
-            SqlDataRecordListTVPParameter<T>.Set(parameter, value as IEnumerable<T>, null);
+            SqlDataRecordListTVPParameter.Set(parameter, value as IEnumerable<Microsoft.SqlServer.Server.SqlDataRecord>, null);
         }
     }
 }
