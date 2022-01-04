@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Project.Dapper.Extension;
 using System;
+using System.Text.Json;
 
 namespace Banana.Tests
 {
@@ -14,7 +15,14 @@ namespace Banana.Tests
 
             var repo = new UserRepository();
             var user = repo.QuerySet<User>().Where(x => x.Id == new Guid("08d94093-2f5e-4c85-818b-828bc29310b0")).Get();
+            Console.WriteLine(JsonSerializer.Serialize(user));
+            Console.ReadLine();
 
+            //var where= ExpressExpansion.
+
+            var user2= repo.QuerySet<User>().Where(x => x.Id == new Guid("08d940fe-118e-4246-86e5-6b22a3c42c31")).Get();
+            Console.WriteLine(JsonSerializer.Serialize(user));
+            Console.ReadLine();
         }
     }
     class UserRepository : MyBaseRespository<User>
