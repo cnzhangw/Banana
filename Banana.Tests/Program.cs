@@ -35,7 +35,7 @@ namespace Banana.Tests
 
         public override void OnConfiguring(RepositoryOptionsBuilder builder)
         {
-            builder.BuildConnection(x => new MySqlConnection(@"server=47.96.189.232;port=3306;uid=root;pwd=100200;database=cdb;charset=utf8"))
+            builder.BuildConnection(x => new MySqlConnection(@"server=127.0.0.1;port=3306;uid=root;pwd=123456;database=cdb;charset=utf8"))
                   .BuildAutoSyncStructure(false)
                   .BuildProvider(new MySqlProvider());
         }
